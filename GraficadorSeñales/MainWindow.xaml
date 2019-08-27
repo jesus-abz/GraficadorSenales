@@ -19,13 +19,17 @@
         <TextBlock HorizontalAlignment="Left" Margin="226,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Tiempo "/><Run Text="Fina"/><Run Text="l:"/></TextBlock>
         <TextBox x:Name="txtTiempoFinal" HorizontalAlignment="Left" Height="23" Margin="226,114,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
         <Button x:Name="btnGraficar" Content="Graficar" HorizontalAlignment="Left" Margin="456,66,0,0" VerticalAlignment="Top" Width="75" Click="btnGraficar_Click"/>
-        <ScrollViewer x:Name="scrGrafica" HorizontalAlignment="Left" Height="218" VerticalAlignment="Top" Width="737" Margin="30,191,0,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
+        <ScrollViewer x:Name="scrGrafica" HorizontalAlignment="Left" Height="218" VerticalAlignment="Top" Width="541" Margin="226,191,0,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
             <Grid>
                 <Polyline Stroke="CornFlowerBlue" StrokeThickness="2" Name="plnGrafica" />
                 <Polyline Stroke="Black" StrokeThickness="1" Name="plnEjeX" />
+                <Polyline Stroke="Black" StrokeThickness="1" Name="plnEjeY" />
             </Grid>
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Left" Margin="226,142,0,0" TextWrapping="Wrap" Text="Frecuencia de muestreo:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtFrecuenciaMuestreo" HorizontalAlignment="Left" Height="23" Margin="226,163,0,0" TextWrapping="Wrap" Text="1000" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="lblLimiteSuperior" HorizontalAlignment="Left" Margin="30,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
+        <TextBlock x:Name="lblLimiteInferior" HorizontalAlignment="Left" Margin="30,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
+        <TextBlock HorizontalAlignment="Left" Margin="30,291,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
     </Grid>
 </Window>
