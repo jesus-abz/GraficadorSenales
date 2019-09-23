@@ -51,8 +51,9 @@ namespace GraficadorSeñales
                 double.Parse(txtFrecuenciaMuestreo.Text);
 
             Señal señal;
+            Señal señalResultante;
 
-            switch(cbTipoSenal.SelectedIndex)
+            switch (cbTipoSenal.SelectedIndex)
             {
                 case 0: //parabolica
                     señal = new SenalParabolica();
@@ -91,40 +92,73 @@ namespace GraficadorSeñales
                 señal.construirSeñal();
             }
 
-            double periodoMuestreo = 1.0 / frecuenciaMuestreo;
+            switch(cbOperacion.SelectedIndex)
+            {
+                case 0: //escala de amplitud
+                    double factorEscala = double.Parse(((OperacionEscalaAmplitud)(panelConfiguracionOperacion.Children[0])).txtFactorEscala.Text);
+                    señalResultante = Señal.escalarAmplitud(señal, factorEscala);
+                    break;
+                default:
+                    señalResultante = null;
+                    break;
+            }
 
             double amplitudMaxima = señal.AmplitudMaxima;
+            double amplitudMaximaResultado = señalResultante.AmplitudMaxima;
+
+            double periodoMuestreo = 1.0 / frecuenciaMuestreo;
 
             plnGrafica.Points.Clear();
+            plnGraficaResultante.Points.Clear();
 
-            foreach(Muestra muestra in señal.Muestras)
+            foreach (Muestra muestra in señal.Muestras)
             {
                 plnGrafica.Points.Add(adaptarCoordenadas(muestra.X, muestra.Y, tiempoInicial, amplitudMaxima));
+            }
+
+            foreach(Muestra muestra in señalResultante.Muestras)
+            {
+                plnGraficaResultante.Points.Add(adaptarCoordenadas(muestra.X, muestra.Y, tiempoInicial, amplitudMaximaResultado));
             }
 
             lblLimiteSuperior.Text = amplitudMaxima.ToString();
             lblLimiteInferior.Text = "-" + amplitudMaxima.ToString();
 
+            lblLimiteInferiorResultado.Text = amplitudMaximaResultado.ToString("F");
+            lblLimiteSuperiorResultado.Text = amplitudMaximaResultado.ToString("F");
+
+            // original
             plnEjeX.Points.Clear();
             plnEjeX.Points.Add(adaptarCoordenadas(tiempoInicial, 0.0, tiempoInicial, amplitudMaxima));
             plnEjeX.Points.Add(adaptarCoordenadas(tiempoFinal, 0.0, tiempoInicial, amplitudMaxima));
+
+            //resultado
+            plnEjeXResultante.Points.Clear();
+            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoInicial, 0.0, tiempoInicial, amplitudMaximaResultado));
+            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoFinal, 0.0, tiempoInicial, amplitudMaximaResultado));
 
             plnEjeY.Points.Clear();
             plnEjeY.Points.Add(adaptarCoordenadas(0.0, amplitudMaxima, tiempoInicial, amplitudMaxima));
             plnEjeY.Points.Add(adaptarCoordenadas(0.0, -amplitudMaxima, tiempoInicial, amplitudMaxima));
 
+            //resultado
+            plnEjeYResultante.Points.Clear();
+            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, amplitudMaximaResultado, tiempoInicial, amplitudMaximaResultado));
+            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, -amplitudMaximaResultado, tiempoInicial, amplitudMaximaResultado));
+
+
         }
 
-        public Point adaptarCoordenadas( double x, double y, double tiempoInicial, double amplitudMaxima)
+        public Point adaptarCoordenadas(double x, double y, double tiempoInicial, double amplitudMaxima)
         {
             return new Point((x - tiempoInicial) * scrGrafica.Width, (-1 *
-                (y * (((scrGrafica.Height / 2.0) - 25) / amplitudMaxima))) + (scrGrafica.Height / 2.0) );
+                (y * (((scrGrafica.Height / 2.0) - 25) / amplitudMaxima))) + (scrGrafica.Height / 2.0));
         }
 
         private void CbTipoSenal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             panelConfiguracion.Children.Clear();
-            switch(cbTipoSenal.SelectedIndex)
+            switch (cbTipoSenal.SelectedIndex)
             {
                 case 0: //exponencial
                     break;
@@ -141,5 +175,19 @@ namespace GraficadorSeñales
                     break;
             }
         }
+
+        private void CbOperacion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            panelConfiguracionOperacion.Children.Clear();
+            switch (cbOperacion.SelectedIndex)
+            {
+                case 0:
+                    panelConfiguracionOperacion.Children.Add(new OperacionEscalaAmplitud());
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

@@ -34,26 +34,19 @@
         </ComboBox>
         <ScrollViewer x:Name="scrGraficaResultado" HorizontalAlignment="Left" Height="218" VerticalAlignment="Top" Width="541" Margin="226,435,0,0" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Visible">
             <Grid>
-                <Polyline Stroke="CornFlowerBlue" StrokeThickness="2" x:Name="plnGrafica1" />
-                <Polyline Stroke="Black" StrokeThickness="1" x:Name="plnEjeX1" />
-                <Polyline Stroke="Black" StrokeThickness="1" x:Name="plnEjeY1" />
+                <Polyline Stroke="CornFlowerBlue" StrokeThickness="2" x:Name="plnGraficaResultante" />
+                <Polyline Stroke="Black" StrokeThickness="1" x:Name="plnEjeXResultante" />
+                <Polyline Stroke="Black" StrokeThickness="1" x:Name="plnEjeYResultante" />
             </Grid>
         </ScrollViewer>
         <TextBlock x:Name="lblLimiteSuperiorResultado" HorizontalAlignment="Left" Margin="30,448,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
         <TextBlock x:Name="lblLimiteInferiorResultado" HorizontalAlignment="Left" Margin="30,618,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,535,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191" Text="0" TextAlignment="Right"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,21,0,0" TextWrapping="Wrap" Text="Tipo de Señal:" VerticalAlignment="Top"/>
         <Grid x:Name="panelConfiguracion_Copy" HorizontalAlignment="Left" Height="95" Margin="10,69,0,0" VerticalAlignment="Top" Width="186"/>
-        <ComboBox x:Name="cbTipoSenal_Copy" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="186" SelectedIndex="0" SelectionChanged="CbTipoSenal_SelectionChanged">
-            <ComboBoxItem Content="Señal Parabolica"/>
-            <ComboBoxItem Content="Señal Senoidal"/>
-            <ComboBoxItem Content="Señal Exponencial"/>
-            <ComboBoxItem Content="Señal de Audio"/>
-        </ComboBox>
-        <TextBlock HorizontalAlignment="Left" Margin="201,21,0,0" TextWrapping="Wrap" Text="Resultado" VerticalAlignment="Top"/>
-        <Grid x:Name="panelConfiguracion_Copy1" HorizontalAlignment="Left" Height="95" Margin="201,69,0,0" VerticalAlignment="Top" Width="186"/>
-        <ComboBox x:Name="cbTipoSenal_Copy1" HorizontalAlignment="Left" Margin="201,42,0,0" VerticalAlignment="Top" Width="186" SelectedIndex="0" SelectionChanged="CbTipoSenal_SelectionChanged">
-            <ComboBoxItem Content="Señal Parabolica"/>
+        <TextBlock HorizontalAlignment="Left" Margin="201,21,0,0" TextWrapping="Wrap" Text="Operación:" VerticalAlignment="Top"/>
+        <Grid x:Name="panelConfiguracionOperacion" HorizontalAlignment="Left" Height="144" Margin="201,42,0,0" VerticalAlignment="Top" Width="344"/>
+        <ComboBox x:Name="cbOperacion" HorizontalAlignment="Left" Margin="264,15,0,0" VerticalAlignment="Top" Width="186" SelectedIndex="0" SelectionChanged="CbOperacion_SelectionChanged">
+            <ComboBoxItem Content="Escala de Amplitud"/>
             <ComboBoxItem Content="Señal Senoidal"/>
             <ComboBoxItem Content="Señal Exponencial"/>
             <ComboBoxItem Content="Señal de Audio"/>
