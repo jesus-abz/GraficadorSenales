@@ -98,13 +98,16 @@ namespace GraficadorSeñales
                     double factorEscala = double.Parse(((OperacionEscalaAmplitud)(panelConfiguracionOperacion.Children[0])).txtFactorEscala.Text);
                     señalResultante = Señal.escalarAmplitud(señal, factorEscala);
                     break;
+                /*case 1: // desplazamiento
+
+                    break;*/
                 default:
                     señalResultante = null;
                     break;
             }
 
-            double amplitudMaxima = señal.AmplitudMaxima;
-            double amplitudMaximaResultado = señalResultante.AmplitudMaxima;
+            double amplitudMaxima = (señal.AmplitudMaxima >= señalResultante.AmplitudMaxima) ?
+                señal.AmplitudMaxima : señalResultante.AmplitudMaxima;
 
             double periodoMuestreo = 1.0 / frecuenciaMuestreo;
 
@@ -118,14 +121,14 @@ namespace GraficadorSeñales
 
             foreach(Muestra muestra in señalResultante.Muestras)
             {
-                plnGraficaResultante.Points.Add(adaptarCoordenadas(muestra.X, muestra.Y, tiempoInicial, amplitudMaximaResultado));
+                plnGraficaResultante.Points.Add(adaptarCoordenadas(muestra.X, muestra.Y, tiempoInicial, amplitudMaxima));
             }
 
-            lblLimiteSuperior.Text = amplitudMaxima.ToString();
-            lblLimiteInferior.Text = "-" + amplitudMaxima.ToString();
+            lblLimiteSuperior.Text = amplitudMaxima.ToString("F");
+            lblLimiteInferior.Text = "-" + amplitudMaxima.ToString("F");
 
-            lblLimiteInferiorResultado.Text = amplitudMaximaResultado.ToString("F");
-            lblLimiteSuperiorResultado.Text = amplitudMaximaResultado.ToString("F");
+            lblLimiteInferiorResultado.Text = "-" + amplitudMaxima.ToString("F");
+            lblLimiteSuperiorResultado.Text = amplitudMaxima.ToString("F");
 
             // original
             plnEjeX.Points.Clear();
@@ -134,8 +137,8 @@ namespace GraficadorSeñales
 
             //resultado
             plnEjeXResultante.Points.Clear();
-            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoInicial, 0.0, tiempoInicial, amplitudMaximaResultado));
-            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoFinal, 0.0, tiempoInicial, amplitudMaximaResultado));
+            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoInicial, 0.0, tiempoInicial, amplitudMaxima));
+            plnEjeXResultante.Points.Add(adaptarCoordenadas(tiempoFinal, 0.0, tiempoInicial, amplitudMaxima));
 
             plnEjeY.Points.Clear();
             plnEjeY.Points.Add(adaptarCoordenadas(0.0, amplitudMaxima, tiempoInicial, amplitudMaxima));
@@ -143,8 +146,8 @@ namespace GraficadorSeñales
 
             //resultado
             plnEjeYResultante.Points.Clear();
-            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, amplitudMaximaResultado, tiempoInicial, amplitudMaximaResultado));
-            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, -amplitudMaximaResultado, tiempoInicial, amplitudMaximaResultado));
+            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, amplitudMaxima, tiempoInicial, amplitudMaxima));
+            plnEjeYResultante.Points.Add(adaptarCoordenadas(0.0, -amplitudMaxima, tiempoInicial, amplitudMaxima));
 
 
         }
