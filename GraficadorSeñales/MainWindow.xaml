@@ -46,8 +46,9 @@
         <Grid x:Name="panelConfiguracionOperacion" HorizontalAlignment="Left" Height="144" Margin="233,42,0,0" VerticalAlignment="Top" Width="194"/>
         <ComboBox x:Name="cbOperacion" HorizontalAlignment="Left" Margin="296,15,0,0" VerticalAlignment="Top" Width="131" SelectedIndex="-1" SelectionChanged="CbOperacion_SelectionChanged">
             <ComboBoxItem Content="Escala de Amplitud"/>
-            <ComboBoxItem Content="Desplazamiento"/>
-            <ComboBoxItem Content="Multiplicación"/>
+            <ComboBoxItem Content="Distancia de Desplazamiento"/>
+            <ComboBoxItem Content="Multiplicación de Señales"/>
+            <ComboBoxItem Content="Escala Exponencial"/>
         </ComboBox>
         <TextBlock x:Name="lblTipoSeñal" HorizontalAlignment="Left" Margin="432,21,0,0" TextWrapping="Wrap" Text="Tipo de Señal:" VerticalAlignment="Top"/>
         <Grid x:Name="panelConfiguracion_2" HorizontalAlignment="Left" Height="144" Margin="432,42,0,0" VerticalAlignment="Top" Width="197"/>
