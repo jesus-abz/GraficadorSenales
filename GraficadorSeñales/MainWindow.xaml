@@ -18,6 +18,7 @@
                 <Polyline Stroke="CornFlowerBlue" StrokeThickness="2" Name="plnGrafica" />
                 <Polyline Stroke="Black" StrokeThickness="1" Name="plnEjeX" />
                 <Polyline Stroke="Black" StrokeThickness="1" Name="plnEjeY" />
+                <Polyline Stroke="Red" StrokeThickness="1" x:Name="plnGrafica_2" />
             </Grid>
         </ScrollViewer>
         <TextBlock HorizontalAlignment="Left" Margin="636,142,0,0" TextWrapping="Wrap" Text="Frecuencia de muestreo:" VerticalAlignment="Top"/>
