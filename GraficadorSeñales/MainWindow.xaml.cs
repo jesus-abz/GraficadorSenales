@@ -143,9 +143,10 @@ namespace GraficadorSeñales
                     double factorEscala = double.Parse(((OperacionEscalaAmplitud)(panelConfiguracionOperacion.Children[0])).txtFactorEscala.Text);
                     señalResultante = Señal.escalarAmplitud(señal, factorEscala);
                     break;
-                /*case 1: // desplazamiento
-
-                    break;*/
+                case 1: // desplazamiento
+                    double desplazamiento = double.Parse(((OperacionDesplazamiento)(panelConfiguracionOperacion.Children[0])).txtDesplazamiento.Text);
+                    señalResultante = Señal.desplazamintoSeñales(señal, desplazamiento);
+                    break;
                 case 2: //multiplicacion de señales
                     señalResultante = Señal.multiplicarSeñales(señal, segundaSeñal);
                     break;
@@ -253,10 +254,11 @@ namespace GraficadorSeñales
             mostrarSegundaSeñal(false);
             switch (cbOperacion.SelectedIndex)
             {
-                case 0:
+                case 0: //escala
                     panelConfiguracionOperacion.Children.Add(new OperacionEscalaAmplitud());
                     break;
-                case 1:
+                case 1: //desplazamiento
+                    panelConfiguracionOperacion.Children.Add(new OperacionDesplazamiento());
                     break;
                 case 2: //multiplicacion
                     mostrarSegundaSeñal(true);
