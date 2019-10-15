@@ -50,6 +50,7 @@
             <ComboBoxItem Content="Distancia de Desplazamiento"/>
             <ComboBoxItem Content="Multiplicación de Señales"/>
             <ComboBoxItem Content="Escala Exponencial"/>
+            <ComboBoxItem Content="Transformada de Fourier"/>
         </ComboBox>
         <TextBlock x:Name="lblTipoSeñal" HorizontalAlignment="Left" Margin="432,21,0,0" TextWrapping="Wrap" Text="Tipo de Señal:" VerticalAlignment="Top"/>
         <Grid x:Name="panelConfiguracion_2" HorizontalAlignment="Left" Height="144" Margin="432,42,0,0" VerticalAlignment="Top" Width="197"/>
