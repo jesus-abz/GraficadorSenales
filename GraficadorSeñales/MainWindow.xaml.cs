@@ -154,6 +154,9 @@ namespace GraficadorSeñales
                     double exponente = double.Parse(((OperacionEscalaExponencial)(panelConfiguracionOperacion.Children[0])).txtExponente.Text);
                     señalResultante = Señal.escalarExponencial(señal, exponente);
                     break;
+                case 4: //transformada de fourier
+                    señalResultante = Señal.transformadaFourier(señal);
+                    break;
                 default:
                     señalResultante = null;
                     break;

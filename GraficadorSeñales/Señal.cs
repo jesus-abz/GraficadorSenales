@@ -139,6 +139,11 @@ namespace GraficadorSeñales
                     muestra += señal.Muestras[n].Y * Complex.Exp((-2 * Math.PI * Complex.ImaginaryOne * k * n) / señal.Muestras.Count);
                 }
                 resultado.Muestras.Add(new Muestra(señal.Muestras[k].X, muestra.Magnitude));
+
+                if(Math.Abs(muestra.Magnitude) > señal.AmplitudMaxima)
+                {
+                    señal.AmplitudMaxima = Math.Abs(muestra.Magnitude);
+                }
             }
             return resultado;
         }
